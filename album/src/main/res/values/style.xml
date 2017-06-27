@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright 2017 Yan Zhenjie
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,9 +15,9 @@
 -->
 <resources>
 
-    <style name="album_AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="album_AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="album_PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="album_PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- MatchParent -->
 
@@ -43,6 +42,7 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="titleTextColor">@color/album_White</item>
         <item name="subtitleTextColor">@color/album_White</item>
+        <item name="navigationIcon">@drawable/album_ic_back_white</item>
         <item name="theme">@style/album_ToolbarTheme</item>
     </style>
 
@@ -56,7 +56,7 @@
 
     <!-- CheckBox -->
 
-    <style name="album_CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox"/>
+    <style name="album_CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox" />
 
     <style name="album_CheckBox.WrapContent">
         <item name="android:layout_width">wrap_content</item>

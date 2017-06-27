@@ -46,8 +46,10 @@ import com.yanzhenjie.album.impl.AlbumCallback;
 import com.yanzhenjie.album.impl.OnCompatItemClickListener;
 import com.yanzhenjie.album.impl.OnCompoundItemCheckListener;
 import com.yanzhenjie.album.task.ScanTask;
+import com.yanzhenjie.album.util.AlbumUtils;
 import com.yanzhenjie.album.util.DisplayUtils;
 import com.yanzhenjie.album.widget.recyclerview.AlbumVerticalGirdDecoration;
+import com.yanzhenjie.fragment.NoFragment;
 import com.yanzhenjie.mediascanner.MediaScanner;
 
 import java.io.File;
@@ -118,9 +120,16 @@ public class AlbumFragment extends BasicCameraFragment {
         mBtnSwitchFolder = (Button) view.findViewById(R.id.btn_switch_dir);
         mRvContentList = (RecyclerView) view.findViewById(R.id.rv_content_list);
 
-        setToolbar((Toolbar) view.findViewById(R.id.toolbar));
-        displayHomeAsUpEnabled(R.drawable.album_ic_back_white);
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setToolbar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if(!AlbumFragment.this.onInterceptToolbarBack()) {
+                    AlbumFragment.this.finish();
+                }
 
+            }
+        });
         mBtnSwitchFolder.setOnClickListener(mSwitchDirClick);
         mBtnPreview.setOnClickListener(mPreviewClick);
     }
@@ -131,7 +140,7 @@ public class AlbumFragment extends BasicCameraFragment {
         final Bundle argument = getArguments();
         mToolBarColor = argument.getInt(
                 AlbumWrapper.KEY_INPUT_TOOLBAR_COLOR,
-                ContextCompat.getColor(getContext(), R.color.album_ColorPrimary));
+                AlbumUtils.getThemeColor(getActivity(), R.attr.colorPrimary));
         String title = argument.getString(AlbumWrapper.KEY_INPUT_TITLE);
         if (TextUtils.isEmpty(title)) title = getString(R.string.album_title);
         mNavigationColor = argument.getInt(
@@ -264,7 +273,7 @@ public class AlbumFragment extends BasicCameraFragment {
             if (hasCheckSize >= mAllowSelectCount)
                 Toast.makeText(
                         getContext(),
-                        String.format(Locale.getDefault(), getString(R.string.album_check_limit_camera), mAllowSelectCount),
+                        String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit_camera, mAllowSelectCount), mAllowSelectCount),
                         Toast.LENGTH_LONG).show();
             else
                 cameraUnKnowPermission(randomJPGPath());
@@ -323,7 +332,7 @@ public class AlbumFragment extends BasicCameraFragment {
                 if (mCheckedImages.size() >= mAllowSelectCount) {
                     Toast.makeText(
                             getContext(),
-                            String.format(Locale.getDefault(), getString(R.string.album_check_limit), mAllowSelectCount),
+                            String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount),
                             Toast.LENGTH_LONG).show();
 
                     buttonView.setChecked(false);

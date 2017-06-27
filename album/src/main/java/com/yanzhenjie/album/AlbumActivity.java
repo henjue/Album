@@ -82,7 +82,7 @@ public class AlbumActivity extends CompatActivity implements AlbumCallback, Gall
 
         // basic.
         int statusBarColor = intent.getIntExtra(UIWrapper.KEY_INPUT_STATUS_COLOR,
-                ContextCompat.getColor(this, R.color.album_ColorPrimaryDark));
+                AlbumUtils.getThemeColor(this, R.attr.colorPrimaryDark));
         int navigationBarColor = intent.getIntExtra(UIWrapper.KEY_INPUT_NAVIGATION_COLOR,
                 ContextCompat.getColor(this, R.color.album_ColorPrimaryBlack));
         mCheckedPaths = intent.getStringArrayListExtra(UIWrapper.KEY_INPUT_CHECKED_LIST);

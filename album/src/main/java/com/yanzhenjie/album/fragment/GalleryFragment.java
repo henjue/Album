@@ -35,6 +35,7 @@ import com.yanzhenjie.album.R;
 import com.yanzhenjie.album.adapter.BasicPreviewAdapter;
 import com.yanzhenjie.album.adapter.PathPreviewAdapter;
 import com.yanzhenjie.album.impl.GalleryCallback;
+import com.yanzhenjie.album.util.AlbumUtils;
 import com.yanzhenjie.album.util.SelectorUtils;
 import com.yanzhenjie.fragment.NoFragment;
 
@@ -86,8 +87,17 @@ public class GalleryFragment extends NoFragment {
         mCheckBox = (AppCompatCheckBox) view.findViewById(R.id.cb_album_check);
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
-        setToolbar((Toolbar) view.findViewById(R.id.toolbar));
-        displayHomeAsUpEnabled(R.drawable.album_ic_back_white);
+
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setToolbar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (!GalleryFragment.this.onInterceptToolbarBack()) {
+                    GalleryFragment.this.finish();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -97,7 +107,7 @@ public class GalleryFragment extends NoFragment {
         Bundle argument = getArguments();
         mToolBarColor = argument.getInt(
                 GalleryWrapper.KEY_INPUT_TOOLBAR_COLOR,
-                ContextCompat.getColor(getContext(), R.color.album_ColorPrimary));
+                AlbumUtils.getThemeColor(getActivity(), R.attr.colorPrimary));
 
         // noinspection ConstantConditions
         getToolbar().setBackgroundColor(mToolBarColor);

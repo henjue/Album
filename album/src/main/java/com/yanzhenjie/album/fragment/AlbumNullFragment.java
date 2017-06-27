@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 
 import com.yanzhenjie.album.AlbumWrapper;
 import com.yanzhenjie.album.R;
+import com.yanzhenjie.album.util.AlbumUtils;
 import com.yanzhenjie.album.util.SelectorUtils;
 
 /**
@@ -57,8 +58,16 @@ public class AlbumNullFragment extends BasicCameraFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        setToolbar((Toolbar) view.findViewById(R.id.toolbar));
-        displayHomeAsUpEnabled(R.drawable.album_ic_back_white);
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setToolbar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (!AlbumNullFragment.this.onInterceptToolbarBack()) {
+                    AlbumNullFragment.this.finish();
+                }
+
+            }
+        });
         setTitle(R.string.album_title_not_found_image);
 
         mBtnCamera = (AppCompatButton) view.findViewById(R.id.btn_camera);
@@ -72,7 +81,7 @@ public class AlbumNullFragment extends BasicCameraFragment {
         Bundle argument = getArguments();
         int toolBarColor = argument.getInt(
                 AlbumWrapper.KEY_INPUT_TOOLBAR_COLOR,
-                ContextCompat.getColor(getContext(), R.color.album_ColorPrimary));
+                AlbumUtils.getThemeColor(getActivity(), R.attr.colorPrimary));
         int statusBarColor = argument.getInt(
                 AlbumWrapper.KEY_INPUT_STATUS_COLOR,
                 ContextCompat.getColor(getContext(), R.color.album_ColorPrimaryBlack));

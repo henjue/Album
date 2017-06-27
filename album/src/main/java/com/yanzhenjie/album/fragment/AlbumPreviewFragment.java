@@ -35,6 +35,7 @@ import com.yanzhenjie.album.R;
 import com.yanzhenjie.album.adapter.AlbumImagePreviewAdapter;
 import com.yanzhenjie.album.adapter.BasicPreviewAdapter;
 import com.yanzhenjie.album.entity.AlbumImage;
+import com.yanzhenjie.album.util.AlbumUtils;
 import com.yanzhenjie.album.util.SelectorUtils;
 import com.yanzhenjie.fragment.NoFragment;
 
@@ -71,8 +72,16 @@ public class AlbumPreviewFragment extends NoFragment {
         mCheckBox = (AppCompatCheckBox) view.findViewById(R.id.cb_album_check);
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
-        setToolbar((Toolbar) view.findViewById(R.id.toolbar));
-        displayHomeAsUpEnabled(R.drawable.album_ic_back_white);
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setToolbar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (!AlbumPreviewFragment.this.onInterceptToolbarBack()) {
+                    AlbumPreviewFragment.this.finish();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -82,7 +91,7 @@ public class AlbumPreviewFragment extends NoFragment {
         Bundle argument = getArguments();
         mToolBarColor = argument.getInt(
                 AlbumWrapper.KEY_INPUT_TOOLBAR_COLOR,
-                ContextCompat.getColor(getContext(), R.color.album_ColorPrimary));
+                AlbumUtils.getThemeColor(getActivity(), R.attr.colorPrimary));
         mAllowSelectCount = argument.getInt(AlbumWrapper.KEY_INPUT_LIMIT_COUNT, Integer.MAX_VALUE);
 
         // noinspection ConstantConditions
@@ -120,7 +129,7 @@ public class AlbumPreviewFragment extends NoFragment {
                     if (mCheckedImages.size() >= mAllowSelectCount) {
                         Toast.makeText(
                                 getContext(),
-                                String.format(Locale.getDefault(), getString(R.string.album_check_limit), mAllowSelectCount),
+                                String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount),
                                 Toast.LENGTH_LONG).show();
 
                         mCheckBox.setChecked(false);

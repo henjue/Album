@@ -23,7 +23,9 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 
 import com.yanzhenjie.album.provider.CameraFileProvider;
 
@@ -37,6 +39,14 @@ import java.util.Locale;
  * Created by Yan Zhenjie on 2016/10/30.
  */
 public class AlbumUtils {
+    public static @ColorInt
+    int getThemeColor(Context context, int resId) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = context.getTheme();
+        theme.resolveAttribute(resId, typedValue, true);
+        @ColorInt int color = typedValue.data;
+        return color;
+    }
 
     /**
      * Start the camera.
