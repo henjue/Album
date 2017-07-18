@@ -19,6 +19,9 @@
 
     <style name="album_PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="album_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="album_icon_action_done">@drawable/album_ic_done_white</item>
+    </style>
     <!-- MatchParent -->
 
     <style name="album_MatchParent">
@@ -43,6 +46,7 @@
         <item name="titleTextColor">@color/album_White</item>
         <item name="subtitleTextColor">@color/album_White</item>
         <item name="navigationIcon">@drawable/album_ic_back_white</item>
+
         <item name="theme">@style/album_ToolbarTheme</item>
     </style>
 
