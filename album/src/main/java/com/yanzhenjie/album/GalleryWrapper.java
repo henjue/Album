@@ -51,6 +51,12 @@ public class GalleryWrapper extends UIWrapper<GalleryWrapper> {
     }
 
     @Override
+    public GalleryWrapper doneIcon(int doneIcon) {
+        mIntent.putExtra(KEY_ICON_ACTION_DONE, doneIcon);
+        return this;
+    }
+
+    @Override
     public GalleryWrapper navigationBarColor(@ColorInt int color) {
         mIntent.putExtra(KEY_INPUT_NAVIGATION_COLOR, color);
         return this;

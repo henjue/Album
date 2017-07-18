@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright 2017 Yan Zhenjie
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,5 +24,22 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="album_Toolbar" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="colorPrimary">#f00</item>
+        <item name="colorPrimaryDark">#0ff</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+        <item name="subtitleTextColor">@color/colorPrimaryDark</item>
+        <item name="theme">@style/album_ToolbarTheme</item>
+        <item name="navigationIcon">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="album_ToolbarTheme">
+        <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="album_PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

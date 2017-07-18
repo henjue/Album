@@ -16,6 +16,7 @@
 package com.yanzhenjie.album;
 
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 
 /**
  * <p>Basic UI Wrapper.</p>
@@ -25,6 +26,7 @@ public abstract class UIWrapper<T extends BasicWrapper> extends BasicWrapper<T> 
 
     public static final String KEY_INPUT_STATUS_COLOR = "KEY_INPUT_STATUS_COLOR";
     public static final String KEY_INPUT_TOOLBAR_COLOR = "KEY_INPUT_TOOLBAR_COLOR";
+    public static final String KEY_ICON_ACTION_DONE = "KEY_ICON_ACTION_DONE";
     public static final String KEY_INPUT_NAVIGATION_COLOR = "KEY_INPUT_NAVIGATION_COLOR";
     public static final String KEY_INPUT_CHECKED_LIST = "KEY_INPUT_CHECKED_LIST";
 
@@ -47,6 +49,8 @@ public abstract class UIWrapper<T extends BasicWrapper> extends BasicWrapper<T> 
      * @return a subclass of {@link BasicWrapper}.
      */
     public abstract T toolBarColor(@ColorInt int color);
+
+    public abstract T doneIcon(@DrawableRes int doneIcon);
 
     /**
      * Set the NavigationBar color.

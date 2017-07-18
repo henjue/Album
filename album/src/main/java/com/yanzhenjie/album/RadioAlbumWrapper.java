@@ -39,6 +39,12 @@ public class RadioAlbumWrapper<T extends RadioAlbumWrapper> extends UIWrapper<T>
     }
 
     @Override
+    public T doneIcon(int doneIcon) {
+        mIntent.putExtra(KEY_ICON_ACTION_DONE, doneIcon);
+        return (T) this;
+    }
+
+    @Override
     public T navigationBarColor(@ColorInt int color) {
         mIntent.putExtra(KEY_INPUT_NAVIGATION_COLOR, color);
         return (T) this;

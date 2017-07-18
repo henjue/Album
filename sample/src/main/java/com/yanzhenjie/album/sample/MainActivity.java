@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void fromAlbum() {
         Album.album(this)
                 .toolBarColor(ContextCompat.getColor(this, R.color.colorPrimary)) // Toolbar color.
+                .doneIcon(R.mipmap.ic_launcher)
                 .statusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark)) // StatusBar color.
                 .navigationBarColor(ActivityCompat.getColor(this, R.color.colorPrimaryBlack)) // NavigationBar color.
                 .selectCount(9) // select count.

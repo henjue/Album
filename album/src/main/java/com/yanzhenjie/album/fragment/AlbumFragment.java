@@ -124,7 +124,7 @@ public class AlbumFragment extends BasicCameraFragment {
         setToolbar(mToolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if(!AlbumFragment.this.onInterceptToolbarBack()) {
+                if (!AlbumFragment.this.onInterceptToolbarBack()) {
                     AlbumFragment.this.finish();
                 }
 
@@ -152,7 +152,9 @@ public class AlbumFragment extends BasicCameraFragment {
         mHasCamera = argument.getBoolean(AlbumWrapper.KEY_INPUT_ALLOW_CAMERA, true);
 
         // noinspection ConstantConditions
-        getToolbar().setBackgroundColor(mToolBarColor);
+        if (mToolBarColor >= 0) {
+            getToolbar().setBackgroundColor(mToolBarColor);
+        }
         setTitle(title);
 
         mLayoutManager = new GridLayoutManager(getContext(), columnCount);
@@ -386,7 +388,12 @@ public class AlbumFragment extends BasicCameraFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.album_menu_album, menu);
+        int icon = getArguments().getInt(AlbumWrapper.KEY_ICON_ACTION_DONE, -1);
+        if (icon > 0) {
+            menu.findItem(R.id.album_menu_finish).setIcon(icon);
+        }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
