@@ -90,21 +90,7 @@ public class AlbumUtils {
         activity.startActivityForResult(intent, requestCode);
     }
 
-    /**
-     * Setting {@link Locale} for {@link Context}.
-     */
-    public static Context applyLanguageForContext(Context context, Locale locale) {
-        Resources resources = context.getResources();
-        Configuration config = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.setLocale(locale);
-            return context.createConfigurationContext(config);
-        } else {
-            config.locale = locale;
-            resources.updateConfiguration(config, resources.getDisplayMetrics());
-            return context;
-        }
-    }
+
 
     private static Uri getUri(Context context, File outPath) {
         Uri uri;

@@ -35,11 +35,9 @@ public class AlbumConfig {
     }
 
     private AlbumImageLoader mImageLoader;
-    private Locale mLocale;
 
     private AlbumConfig(Builder build) {
         this.mImageLoader = build.mLoader;
-        this.mLocale = build.mLocale;
     }
 
     /**
@@ -48,7 +46,6 @@ public class AlbumConfig {
     @Deprecated
     private AlbumConfig(Build build) {
         this.mImageLoader = build.mLoader;
-        this.mLocale = build.mLocale;
     }
 
     /**
@@ -60,19 +57,10 @@ public class AlbumConfig {
         return mImageLoader;
     }
 
-    /**
-     * Get {@link Locale}.
-     *
-     * @return {@link Locale}.
-     */
-    public Locale getLocale() {
-        return mLocale;
-    }
 
     public static final class Builder {
 
         private AlbumImageLoader mLoader;
-        private Locale mLocale;
 
         private Builder(Context context) {
         }
@@ -88,16 +76,6 @@ public class AlbumConfig {
             return this;
         }
 
-        /**
-         * Set locale for language.
-         *
-         * @param locale {@link Locale}.
-         * @return {@link Builder}.
-         */
-        public Builder setLocale(Locale locale) {
-            this.mLocale = locale;
-            return this;
-        }
 
         /**
          * Create AlbumConfig.
@@ -138,18 +116,6 @@ public class AlbumConfig {
             return this;
         }
 
-        /**
-         * Set locale for language.
-         *
-         * @param locale {@link Locale}.
-         * @return {@link Build}.
-         * @deprecated use {@link Builder#setLocale(Locale)} instead.
-         */
-        @Deprecated
-        public Build setLocale(Locale locale) {
-            this.mLocale = locale;
-            return this;
-        }
 
         /**
          * Create AlbumConfig.

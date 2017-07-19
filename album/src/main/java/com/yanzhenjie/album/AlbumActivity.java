@@ -70,9 +70,7 @@ public class AlbumActivity extends CompatActivity implements AlbumCallback, Gall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DisplayUtils.initScreen(this);
-        // Language.
-        Locale locale = Album.getAlbumConfig().getLocale();
-        AlbumUtils.applyLanguageForContext(this, locale);
+
 
         setContentView(R.layout.album_activity_main);
 

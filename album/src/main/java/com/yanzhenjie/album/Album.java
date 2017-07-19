@@ -52,7 +52,6 @@ public final class Album {
         if (sAlbumConfig == null) {
             initialize(AlbumConfig.newBuilder(null)
                     .setImageLoader(new LocalImageLoader())
-                    .setLocale(Locale.getDefault())
                     .build()
             );
         }

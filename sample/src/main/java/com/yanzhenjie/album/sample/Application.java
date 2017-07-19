@@ -37,7 +37,6 @@ public class Application extends android.app.Application {
 
         Album.initialize(new AlbumConfig.Build()
                 .setImageLoader(new LocalImageLoader())
-                .setLocale(Locale.getDefault())
                 .build()
         );
     }
