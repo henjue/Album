@@ -36,6 +36,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.yanzhenjie.album.AlbumWrapper;
+import com.yanzhenjie.album.BasicWrapper;
 import com.yanzhenjie.album.R;
 import com.yanzhenjie.album.UIWrapper;
 import com.yanzhenjie.album.adapter.AlbumImageAdapter;
@@ -272,13 +273,18 @@ public class AlbumFragment extends BasicCameraFragment {
         @Override
         public void onItemClick(View view, int position) {
             int hasCheckSize = mCheckedImages.size();
-            if (hasCheckSize >= mAllowSelectCount)
+            if (hasCheckSize >= mAllowSelectCount) {
+                String text = getArguments().getString(BasicWrapper.KEY_MAX_COUNT_TOAST_TEXT);
+                if (TextUtils.isEmpty(text)) {
+                    text = String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit_camera, mAllowSelectCount), mAllowSelectCount);
+                }
                 Toast.makeText(
                         getContext(),
-                        String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit_camera, mAllowSelectCount), mAllowSelectCount),
+                        text,
                         Toast.LENGTH_LONG).show();
-            else
+            } else {
                 cameraUnKnowPermission(randomJPGPath());
+            }
         }
     };
 
@@ -332,9 +338,13 @@ public class AlbumFragment extends BasicCameraFragment {
 
             if (isChecked) {
                 if (mCheckedImages.size() >= mAllowSelectCount) {
+                    String text = getArguments().getString(BasicWrapper.KEY_MAX_COUNT_TOAST_TEXT);
+                    if (TextUtils.isEmpty(text)) {
+                        text = String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount);
+                    }
                     Toast.makeText(
                             getContext(),
-                            String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount),
+                            text,
                             Toast.LENGTH_LONG).show();
 
                     buttonView.setChecked(false);

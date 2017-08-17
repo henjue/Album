@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yanzhenjie.album.AlbumWrapper;
+import com.yanzhenjie.album.BasicWrapper;
 import com.yanzhenjie.album.R;
 import com.yanzhenjie.album.adapter.AlbumImagePreviewAdapter;
 import com.yanzhenjie.album.adapter.BasicPreviewAdapter;
@@ -127,9 +129,13 @@ public class AlbumPreviewFragment extends NoFragment {
 
                 if (isChecked) {
                     if (mCheckedImages.size() >= mAllowSelectCount) {
+                        String text = getArguments().getString(BasicWrapper.KEY_MAX_COUNT_TOAST_TEXT);
+                        if (TextUtils.isEmpty(text)) {
+                            text = String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount);
+                        }
                         Toast.makeText(
                                 getContext(),
-                                String.format(Locale.getDefault(), getResources().getQuantityString(R.plurals.album_check_limit, mAllowSelectCount), mAllowSelectCount),
+                                text,
                                 Toast.LENGTH_LONG).show();
 
                         mCheckBox.setChecked(false);

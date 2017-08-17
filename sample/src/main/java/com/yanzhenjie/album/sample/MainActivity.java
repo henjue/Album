@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 .doneIcon(R.mipmap.ic_launcher)
                 .statusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark)) // StatusBar color.
                 .navigationBarColor(ActivityCompat.getColor(this, R.color.colorPrimaryBlack)) // NavigationBar color.
-                .selectCount(9) // select count.
-                .columnCount(2) // span count.
+                .selectCount(2) // select count.
+                .columnCount(3) // span count.
                 .camera(true) // has fromCamera function.
                 .checkedList(mImageList) // The picture has been selected for anti-election.
                 .start(ACTIVITY_REQUEST_SELECT_PHOTO);

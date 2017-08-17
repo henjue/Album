@@ -77,7 +77,7 @@ public class AlbumActivity extends CompatActivity implements AlbumCallback, Gall
         // prepare color.
         Intent intent = getIntent();
         mArgument = intent.getExtras();
-
+        mArgument.putString(BasicWrapper.KEY_MAX_COUNT_TOAST_TEXT, intent.getStringExtra(BasicWrapper.KEY_MAX_COUNT_TOAST_TEXT));
         // basic.
         int statusBarColor = intent.getIntExtra(UIWrapper.KEY_INPUT_STATUS_COLOR,
                 AlbumUtils.getThemeColor(this, R.attr.colorPrimaryDark));

@@ -30,6 +30,7 @@ import java.lang.reflect.Method;
 public abstract class BasicWrapper<T extends BasicWrapper> {
 
     static final String KEY_INPUT_FRAMEWORK_FUNCTION = "KEY_INPUT_FRAMEWORK_FUNCTION";
+    public static final String KEY_MAX_COUNT_TOAST_TEXT = "KEY_MAX_COUNT_TOAST_TEXT";
     static final int VALUE_INPUT_FRAMEWORK_FUNCTION_ALBUM = 0;
     static final int VALUE_INPUT_FRAMEWORK_FUNCTION_ALBUM_RADIO = 1;
     static final int VALUE_INPUT_FRAMEWORK_FUNCTION_GALLERY = 2;
@@ -37,6 +38,11 @@ public abstract class BasicWrapper<T extends BasicWrapper> {
 
     private Object o;
     private Intent intent;
+
+    public T maxCountToastText(String text) {
+        this.intent.putExtra(KEY_MAX_COUNT_TOAST_TEXT, text);
+        return (T) this;
+    }
 
     protected BasicWrapper(Object o, int function) {
         this.o = o;

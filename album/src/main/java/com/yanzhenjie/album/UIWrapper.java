@@ -42,6 +42,8 @@ public abstract class UIWrapper<T extends BasicWrapper> extends BasicWrapper<T> 
      */
     public abstract T statusBarColor(@ColorInt int color);
 
+
+
     /**
      * Set the ToolBar color.
      *
